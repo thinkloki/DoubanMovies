@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
     TextView title;
     @InjectView(R.id.gridView)
     GridView gridView;
-    private static int SCREENWIDTH, ITEM_WIDTH;
-    private float ITEM_HEIGHT;
+
 
     @InjectView(R.id.toolbar)
     protected Toolbar toolbar;
@@ -58,9 +57,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         initActionBar(toolbar);
-        SCREENWIDTH = CommonUtil.getWindowManager(MainActivity.this).getWidth();
-        ITEM_WIDTH = (SCREENWIDTH - 80) / 3;
-        ITEM_HEIGHT = CommonUtil.getHeight(ITEM_WIDTH, 288, 465);
+
         initDatas();
     }
     protected final void initActionBar(Toolbar toolbar) {
@@ -95,9 +92,14 @@ public class MainActivity extends AppCompatActivity {
 
     private class TheatersAdapter extends BaseAdapter {
         private List<Subject> subjects;
+        private int SCREENWIDTH, ITEM_WIDTH;
+        private float ITEM_HEIGHT;
 
         public TheatersAdapter(List<Subject> subjects) {
             this.subjects = subjects;
+            SCREENWIDTH = CommonUtil.getWindowManager(MainActivity.this).getWidth();
+            ITEM_WIDTH = (SCREENWIDTH - 64) / 3;
+            ITEM_HEIGHT = CommonUtil.getHeight(ITEM_WIDTH, 300, 428);
         }
 
         @Override
@@ -125,7 +127,8 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 holder= (ViewHolder) view.getTag();
             }
-            holder.ivCover.setLayoutParams(new LinearLayout.LayoutParams(ITEM_WIDTH,(int)ITEM_HEIGHT));
+            Log.e("ivCover",subjects.get(i).images.large+"---"+subjects.get(i).images.medium+"---"+subjects.get(i).images.small);
+            holder.ivCover.setLayoutParams(new LinearLayout.LayoutParams(ITEM_WIDTH, (int) ITEM_HEIGHT));
             holder.ivCover.setTag(subjects.get(i).images.large);
             if(holder.ivCover.getTag()==subjects.get(i).images.large){
                 ImageLoader.getInstance().displayImage((String)holder.ivCover.getTag(),holder.ivCover);
