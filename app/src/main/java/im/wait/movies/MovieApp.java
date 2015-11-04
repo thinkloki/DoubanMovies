@@ -1,6 +1,7 @@
 package im.wait.movies;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
@@ -8,6 +9,7 @@ import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
@@ -28,12 +30,21 @@ public class MovieApp extends Application{
         sContext=this;
 
         File cacheDir = StorageUtils.getCacheDirectory(this);
+        DisplayImageOptions defaultOption = new DisplayImageOptions.Builder()
+                .showImageOnFail(R.color.pic_default)
+                .showImageOnLoading(R.color.pic_default)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .imageScaleType(ImageScaleType.NONE_SAFE)
+                .considerExifParams(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .memoryCacheExtraOptions(480, 800) // default = device screen dimensions
                 .diskCacheExtraOptions(480, 800, null)
 //                .taskExecutor(...)
 //                .taskExecutorForCachedImages(...)
-//                .threadPoolSize(3) // default
+                .threadPoolSize(3) // default
                 .threadPriority(Thread.NORM_PRIORITY - 2) // default
                 .tasksProcessingOrder(QueueProcessingType.FIFO) // default
                 .denyCacheImageMultipleSizesInMemory()
@@ -46,9 +57,11 @@ public class MovieApp extends Application{
                 .diskCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
                 .imageDownloader(new BaseImageDownloader(this)) // default
 //                .imageDecoder(new BaseImageDecoder()) // default
-                .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
+                .defaultDisplayImageOptions(defaultOption) // default
                 .writeDebugLogs()
                 .build();
+
+
         ImageLoader.getInstance().init(config);
     }
 

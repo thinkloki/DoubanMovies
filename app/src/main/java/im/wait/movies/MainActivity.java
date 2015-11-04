@@ -1,7 +1,9 @@
 package im.wait.movies;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +26,17 @@ import im.wait.movies.model.SubjectsModel;
 import im.wait.movies.utils.CommonUtil;
 
 public class MainActivity extends AppCompatActivity {
-    @InjectView(R.id.hello)
-    TextView hello;
+    @InjectView(R.id.title)
+    TextView title;
     @InjectView(R.id.gridView)
     GridView gridView;
     private static int SCREENWIDTH, ITEM_WIDTH;
     private float ITEM_HEIGHT;
+
+    @InjectView(R.id.toolbar)
+    protected Toolbar toolbar;
+
+    protected ActionBar actionBar;
 
 
     @Override
@@ -38,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        hello.setOnClickListener(new View.OnClickListener() {
+        title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ApiImpl.getInstance().getTheaters("北京", new SimpleJoyResponce<SubjectsModel>() {
@@ -49,10 +56,28 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        initActionBar(toolbar);
         SCREENWIDTH = CommonUtil.getWindowManager(MainActivity.this).getWidth();
         ITEM_WIDTH = (SCREENWIDTH - 80) / 3;
         ITEM_HEIGHT = CommonUtil.getHeight(ITEM_WIDTH, 288, 465);
         initDatas();
+    }
+    protected final void initActionBar(Toolbar toolbar) {
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            toolbar.getBackground().setAlpha(255);
+            actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle("");
+            }
+            toolbar.setTitle("");
+            initActionBar();
+        }
+    }
+
+    protected void initActionBar() {
+        title.setText("豆瓣电影");
     }
 
     //分别提供288px x 465px(大)
@@ -101,7 +126,10 @@ public class MainActivity extends AppCompatActivity {
                 holder= (ViewHolder) view.getTag();
             }
             holder.ivCover.setLayoutParams(new LinearLayout.LayoutParams(ITEM_WIDTH,(int)ITEM_HEIGHT));
-            ImageLoader.getInstance().displayImage(subjects.get(i).images.large,holder.ivCover);
+            holder.ivCover.setTag(subjects.get(i).images.large);
+            if(holder.ivCover.getTag()==subjects.get(i).images.large){
+                ImageLoader.getInstance().displayImage((String)holder.ivCover.getTag(),holder.ivCover);
+            }
             holder.ivName.setText(subjects.get(i).title);
             return view;
         }

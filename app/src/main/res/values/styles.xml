@@ -8,4 +8,30 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="UnTransportTheme" parent="BaseTheme">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="actionBarSize">48dp</item>-->
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:alertDialogTheme">@style/MyDialog</item>-->
+        <!--<item name="android:dialogTheme">@style/MyDialog</item>-->
+    </style>
+
+
+    <style name="AnimationActivity">
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_left</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_from_right</item>
+    </style>
+
 </resources>
