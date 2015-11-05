@@ -1,7 +1,7 @@
 package im.wait.movies.ui.adapter;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -20,6 +20,7 @@ import im.wait.movies.api.ApiImpl;
 import im.wait.movies.bean.Subject;
 import im.wait.movies.http.network.SimpleJoyResponce;
 import im.wait.movies.model.BaseModel;
+import im.wait.movies.ui.activity.MovieDetailActivity;
 import im.wait.movies.utils.CommonUtil;
 
 /**
@@ -114,10 +115,11 @@ public class TheatersAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent=new Intent(mContext, MovieDetailActivity.class);
+                mContext.startActivity(intent);
                 ApiImpl.getInstance().getPhotos(subject.id,0,20,new SimpleJoyResponce<BaseModel>(){
                     @Override
                     public void onSuccess(BaseModel response) {
-                        Log.e("11111",response.toString());
                     }
                 });
             }
