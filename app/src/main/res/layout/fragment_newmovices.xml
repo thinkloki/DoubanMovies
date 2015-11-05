@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<im.wait.movies.views.JoyProgressFramelayout
+    android:id="@+id/joy_progress_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/toolbar"
+    app:no_data="@layout/include_nodata_info"
+    app:progresslayout="@layout/include_progress_info">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:layout_width="100dip"
+            android:layout_height="100dip"
+            android:text="222222"/>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</im.wait.movies.views.JoyProgressFramelayout>

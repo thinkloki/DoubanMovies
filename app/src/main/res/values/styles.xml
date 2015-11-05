@@ -51,4 +51,14 @@
         <attr name="rippleRoundedCorners" format="dimension" localization="suggested" />
     </declare-styleable>
 
+
+
+    <declare-styleable name="JoyProgressFramelayout">
+        <attr name="progresslayout" format="reference" />
+        <attr name="no_data" format="reference" />
+        <attr name="need_loading" format="boolean" />
+        <attr name="need_error" format="boolean" />
+        <attr name="android:background" />
+    </declare-styleable>
+
 </resources>

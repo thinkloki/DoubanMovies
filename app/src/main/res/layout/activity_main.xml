@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,25 +11,22 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/includes_toolbar" />
+        layout="@layout/includes_toolbar"/>
 
-    <GridView
-        android:paddingTop="10dip"
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/titles"
         android:layout_below="@id/toolbar"
-        android:id="@+id/gridView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="8dip"
-        android:layout_marginRight="8dip"
-        android:drawSelectorOnTop="false"
-        android:fadingEdge="none"
-        android:gravity="center"
-        android:horizontalSpacing="8dip"
-        android:verticalSpacing="10dip"
-        android:listSelector="@android:color/transparent"
-        android:numColumns="3"
-        android:scrollbars="none"
-        android:stretchMode="columnWidth"
-        android:transcriptMode="alwaysScroll">
-    </GridView>
+        android:layout_height="45dip"
+        app:pstsDividerColor="#FFB600"
+        app:pstsIndicatorHeight="6dip"
+        android:background="@drawable/tabs_pattern" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/titles">
+    </android.support.v4.view.ViewPager>
+
 </RelativeLayout>

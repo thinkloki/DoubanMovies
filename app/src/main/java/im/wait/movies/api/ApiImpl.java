@@ -4,6 +4,7 @@ import im.wait.movies.http.network.JoyResponce;
 import im.wait.movies.http.network.NetWorkHelper;
 import im.wait.movies.http.network.NetworkMiddleHandler;
 import im.wait.movies.http.task.NetworkTask;
+import im.wait.movies.model.BaseModel;
 import im.wait.movies.model.SubjectsModel;
 
 /**
@@ -37,6 +38,40 @@ public class ApiImpl implements Api {
         NetworkTask networkTask = new NetworkTask(BASE_URL + ACTION_IN_THEATERS, NetworkTask.Method.GET);
         networkTask.addParams(PARAM_CITY, city);
         networkTask.setNetworkNewResponce(new NetworkMiddleHandler<>(SubjectsModel.class, responce));
+        netWorkHelper.addTask(networkTask);
+    }
+
+    @Override
+    public void getComing(int start, int count, JoyResponce<SubjectsModel> responce) {
+        NetworkTask networkTask = new NetworkTask(BASE_URL + ACTION_COMING_SOON, NetworkTask.Method.GET);
+        networkTask.addParams(PARAM_START, String.valueOf(start));
+        networkTask.addParams(PARAM_COUNT, String.valueOf(count));
+        networkTask.setNetworkNewResponce(new NetworkMiddleHandler<>(SubjectsModel.class, responce));
+        netWorkHelper.addTask(networkTask);
+    }
+
+    @Override
+    public void getTops(int start, int count, JoyResponce<SubjectsModel> responce) {
+        NetworkTask networkTask = new NetworkTask(BASE_URL + ACTION_TOP250, NetworkTask.Method.GET);
+        networkTask.addParams(PARAM_START, String.valueOf(start));
+        networkTask.addParams(PARAM_COUNT, String.valueOf(count));
+        networkTask.setNetworkNewResponce(new NetworkMiddleHandler<>(SubjectsModel.class, responce));
+        netWorkHelper.addTask(networkTask);
+    }
+
+    @Override
+    public void getNewMovices(JoyResponce<SubjectsModel> responce) {
+        NetworkTask networkTask = new NetworkTask(BASE_URL + ACTION_NEW_MOVIES, NetworkTask.Method.GET);
+        networkTask.setNetworkNewResponce(new NetworkMiddleHandler<>(SubjectsModel.class, responce));
+        netWorkHelper.addTask(networkTask);
+    }
+
+    @Override
+    public void getPhotos(String id,int start, int count, JoyResponce<BaseModel> responce) {
+        NetworkTask networkTask = new NetworkTask(BASE_URL + ACTION_SUBJECT+"/"+id+"/"+ACTION_PHOTOS, NetworkTask.Method.GET);
+        networkTask.addParams(PARAM_START, String.valueOf(start));
+        networkTask.addParams(PARAM_COUNT, String.valueOf(count));
+        networkTask.setNetworkNewResponce(new NetworkMiddleHandler<>(BaseModel.class, responce));
         netWorkHelper.addTask(networkTask);
     }
 }

@@ -8,9 +8,11 @@ import im.wait.movies.model.BaseModel;
 
 
 /**
- * Created by xicheng on 15/5/11.
+ * 作者：thinkloki on 15/8/28 09:29
+ * 邮箱：thinkloki@gmail.com
+ * github:https://github.com/thinkloki
  * <p/>
- * 中间层 处理 业务 Model 容错
+ * 接口封装类
  */
 public class NetworkMiddleHandler<MODEL extends BaseModel> implements NetworkResponce<NetworkTask, String,MODEL> {
 

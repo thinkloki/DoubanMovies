@@ -5,7 +5,11 @@ import com.android.volley.VolleyError;
 import im.wait.movies.http.task.NetworkTask;
 
 /**
- * Created by xicheng on 15/5/13.
+ * 作者：thinkloki on 15/8/28 09:29
+ * 邮箱：thinkloki@gmail.com
+ * github:https://github.com/thinkloki
+ * <p/>
+ * 接口封装类
  */
 public class SimpleJoyResponce<MODEL> implements JoyResponce<MODEL> {
     @Override
