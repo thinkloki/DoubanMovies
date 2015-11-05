@@ -1,5 +1,6 @@
 package im.wait.movies.api;
 
+import im.wait.movies.bean.Subject;
 import im.wait.movies.http.network.JoyResponce;
 import im.wait.movies.model.BaseModel;
 import im.wait.movies.model.SubjectsModel;
@@ -44,5 +45,7 @@ public interface Api {
     void getNewMovices(JoyResponce<SubjectsModel> responce);
 
     void getPhotos(String id,int start,int count,JoyResponce<BaseModel> responce);
+
+    void getMovieDetail(String id,JoyResponce<Subject> responce);
 
 }

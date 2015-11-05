@@ -13,6 +13,5 @@ public abstract class BaseModel {
     public int code;
     public int start;
     public int count;
-    public String title;
     public int total;
 }

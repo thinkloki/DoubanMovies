@@ -1,5 +1,6 @@
 package im.wait.movies.api;
 
+import im.wait.movies.bean.Subject;
 import im.wait.movies.http.network.JoyResponce;
 import im.wait.movies.http.network.NetWorkHelper;
 import im.wait.movies.http.network.NetworkMiddleHandler;
@@ -72,6 +73,13 @@ public class ApiImpl implements Api {
         networkTask.addParams(PARAM_START, String.valueOf(start));
         networkTask.addParams(PARAM_COUNT, String.valueOf(count));
         networkTask.setNetworkNewResponce(new NetworkMiddleHandler<>(BaseModel.class, responce));
+        netWorkHelper.addTask(networkTask);
+    }
+
+    @Override
+    public void getMovieDetail(String id, JoyResponce<Subject> responce) {
+        NetworkTask networkTask = new NetworkTask(BASE_URL + ACTION_SUBJECT+"/"+id, NetworkTask.Method.GET);
+        networkTask.setNetworkNewResponce(new NetworkMiddleHandler<>(Subject.class, responce));
         netWorkHelper.addTask(networkTask);
     }
 }

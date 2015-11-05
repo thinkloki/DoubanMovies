@@ -2,6 +2,7 @@ package im.wait.movies.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,10 +17,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import im.wait.movies.R;
-import im.wait.movies.api.ApiImpl;
 import im.wait.movies.bean.Subject;
-import im.wait.movies.http.network.SimpleJoyResponce;
-import im.wait.movies.model.BaseModel;
 import im.wait.movies.ui.activity.MovieDetailActivity;
 import im.wait.movies.utils.CommonUtil;
 
@@ -40,6 +38,7 @@ public class TheatersAdapter extends BaseAdapter {
         SCREENWIDTH = CommonUtil.getWindowManager(mContext).getWidth();
         ITEM_WIDTH = (SCREENWIDTH - 64) / 3;
         ITEM_HEIGHT = CommonUtil.getHeight(ITEM_WIDTH, 300, 428);
+        Log.e("2222",ITEM_WIDTH+"---"+ITEM_HEIGHT);
     }
 
     @Override
@@ -116,12 +115,8 @@ public class TheatersAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(mContext, MovieDetailActivity.class);
+                intent.putExtra("subject",subject);
                 mContext.startActivity(intent);
-                ApiImpl.getInstance().getPhotos(subject.id,0,20,new SimpleJoyResponce<BaseModel>(){
-                    @Override
-                    public void onSuccess(BaseModel response) {
-                    }
-                });
             }
         });
 

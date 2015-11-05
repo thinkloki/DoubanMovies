@@ -27,6 +27,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
  * github:https://github.com/thinkloki
  */
 public abstract class BaseActivity extends AppCompatActivity implements SwipeBackActivityBase {
+    protected final int DELAY_TIME=2000;
     private SwipeBackActivityHelper mHelper;
     protected AppCompatActivity mContext;
     protected NetWorkHelper netWorkHelper;

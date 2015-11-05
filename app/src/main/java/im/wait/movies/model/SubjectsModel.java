@@ -10,6 +10,7 @@ import im.wait.movies.bean.Subject;
  * github:https://github.com/thinkloki
  */
 public class SubjectsModel extends BaseModel{
+    public String title;
     private List<Subject> subjects;
 
     @Override

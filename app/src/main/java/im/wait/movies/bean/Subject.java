@@ -1,14 +1,17 @@
 package im.wait.movies.bean;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+
+import im.wait.movies.model.BaseModel;
 
 /**
  * 作者：thinkloki on 15/11/3 22:34
  * 邮箱：thinkloki@gmail.com
  * github:https://github.com/thinkloki
  */
-public class Subject{
+public class Subject extends BaseModel implements Serializable{
     public String id;                  //条目id
     public String title;                //中文名
     public String original_title;       //原名
@@ -19,12 +22,33 @@ public class Subject{
     public String year;                 //年代
     public String subtype;              //条目分类, movie或者tv
     public String [] genres;
+    public String summary;              //简介
 
-    public int collect_count;
+    public String comments_count;    //评论人数
+    public String ratings_count;        //评分人数
+
 
     public List<People> directors;
 
     public List<People> casts;
+
+    public int reviews_count;           //看过
+    public int wish_count;              //想看
+    public int collect_count;           //收藏
+    public String douban_site;          //豆瓣地址
+    public String mobile_url;
+
+
+    public String do_count;
+    public String seasons_count;
+    public String schedule_url;
+    public String episodes_count;
+    public String current_season;
+
+
+    public String [] countries;         //国别
+
+    public String [] aka;               //推荐
 
     @Override
     public String toString() {
