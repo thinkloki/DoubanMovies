@@ -64,9 +64,6 @@ public class MovieDetailActivity extends BaseActivity {
         }
         tvTime.setText(ss.substring(0,ss.length()-1));
 
-
-
-
     }
 
     @Override

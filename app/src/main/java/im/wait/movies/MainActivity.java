@@ -24,12 +24,8 @@ import im.wait.movies.ui.fragment.TopFragment;
 public class MainActivity extends AppCompatActivity {
     @InjectView(R.id.title)
     TextView title;
-
-
-
     @InjectView(R.id.toolbar)
     protected Toolbar toolbar;
-
     protected ActionBar actionBar;
     @InjectView(R.id.titles)
     PagerSlidingTabStrip titles;
@@ -60,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class HomePagerAdapter extends FragmentStatePagerAdapter {
-        private final String [] titlesStr={"热映","即将上映","Top250","新片榜"};
+        private final String [] titlesStr={"热映","即将上映","Top250"};
         private Fragment theatersFragment;
         private Fragment comingFragment;
         private Fragment topFragment;
@@ -92,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                     currentFragment=topFragment;
                     break;
-                case 3:
-                    if(newFragment==null){
-                        newFragment= NewMovicesFragment.newInstance(null);
-                    }
-                    currentFragment=newFragment;
-                    break;
+//                case 3:
+//                    if(newFragment==null){
+//                        newFragment= NewMovicesFragment.newInstance(null);
+//                    }
+//                    currentFragment=newFragment;
+//                    break;
             }
             return currentFragment;
         }
